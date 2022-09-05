@@ -3,6 +3,7 @@ package com.example.hypeadvice.domain.service;
 import com.example.hypeadvice.domain.entity.Advice;
 import com.example.hypeadvice.domain.repository.AdviceRepository;
 import com.example.hypeadvice.domain.vo.AdviceListVO;
+import com.example.hypeadvice.domain.vo.AdviceVO;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AdviceService {
@@ -37,5 +39,12 @@ public class AdviceService {
           return advicesLIPService.buscarByDescricao(descricao);
       }
       return null;
+    }
+
+    public AdviceVO buscarId(Long id) throws UnirestException {
+        if (Objects.nonNull(id)) {
+            return advicesLIPService.buscarById(id);
+        }
+        return null;
     }
 }

@@ -22,7 +22,7 @@
 	<b:container>
 		<b:jumbotron>
 			<b:messages globalOnly="true" showSummary="true" redisplay="false" id="mensagensGlobais"/>
-			<h:form id="form-advice">
+			<h:form id="form-advice" style="padding-bottom: 30px">
 				<b:form>
 					<b:inputTextarea label="Pesquisar Conselho por Descrição" placeholder="Descrição..." value="#{adviceListBean.advice.descricao}" />
 					<b:message for="@previous" />
@@ -31,11 +31,22 @@
 					</b:commandButton>
 				</b:form>
 			</h:form>
+
+			<h:form id="form-find">
+				<b:form>
+					<b:inputText label="Pesquisar Conselho por ID" placeholder="Insira o ID..."  value="#{adviceListBean.advice.id}">
+						<f:convertNumber/>
+					</b:inputText>
+					<b:message for="@previous" />
+					<b:commandButton actionListener="#{adviceListBean.buscarId()}" look="info" update="form-advice-list mensagensGlobais" value="Buscar por ID" >
+					</b:commandButton>
+				</b:form>
+			</h:form>
 		</b:jumbotron>
 		<b:jumbotron>
 			<h:form id="form-advice-list">
 				<h4 style="text-align:center">Conselhos Localizados</h4>
-				<b:dataTable value="#{adviceListBean.adviceListVO.slips}"
+				<b:dataTable value="#{adviceListBean.get()}"
 							 var="advice">
 					<b:dataTableColumn style="width:10%" value="#{advice.id}" />
 					<b:dataTableColumn value="#{advice.advice}" />

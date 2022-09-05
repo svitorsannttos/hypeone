@@ -70,4 +70,34 @@ public class AdvicesLIPService {
             throw new RuntimeException("Status Code" + status + ", message " + response.getStatusText());
         }
     }
+
+    public AdviceVO buscarById(Long id) throws UnirestException {
+        HttpResponse<String> response = Unirest.get("https://api.adviceslip.com/advice/" + id)
+                .header("Accept-Language", "br")
+                .header("Content-Type", "application/json")
+                .asString();
+        int status = response.getStatus();
+        if (HttpStatus.SC_OK == status) {
+            AdviceVO vo = null;
+            try {
+                String body = response.getBody();
+                if (body.contains("Advice slip not found")) {
+                    throw new RuntimeException("Status Code" + status + ", message: Advice slip not found.");
+                }
+                vo = Utils.jsonToObject(AdviceVO.class, body);
+
+            } catch (Exception e) {
+                throw new RuntimeException("Status Code" + status + ", message " + e.getMessage());
+            }
+
+            if (vo != null) {
+                return vo;
+            } else {
+                throw new RuntimeException("Status Code" + status + ", message " + response.getStatusText());
+            }
+        }
+        else {
+            throw new RuntimeException("Status Code" + status + ", message " + response.getStatusText());
+        }
+    }
 }

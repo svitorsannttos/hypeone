@@ -7,13 +7,13 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
 import com.example.hypeadvice.domain.entity.enums.TipoDeConselhoEnum;
+import com.example.hypeadvice.domain.vo.AdviceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.hypeadvice.domain.entity.Advice;
 import com.example.hypeadvice.domain.service.AdviceService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-@SuppressWarnings("deprecation")
 @Named
 @ViewScoped
 public class AdviceBean extends Bean {
