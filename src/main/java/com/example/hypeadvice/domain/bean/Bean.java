@@ -3,6 +3,7 @@ package com.example.hypeadvice.domain.bean;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.ExternalContext;
@@ -13,7 +14,6 @@ import java.io.Serializable;
 public class Bean implements Serializable {
 
 	public Bean() {
-		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
 
 	public final void init() {

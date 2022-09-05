@@ -26,6 +26,8 @@ public class AdviceListBean extends Bean {
 
     public void initBean() {
         advice = new Advice();
+        adviceListVO = new AdviceListVO();
+        adviceVO = new AdviceVO();
     }
 
     public void buscar() {
